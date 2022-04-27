@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GRNReportController;
 
 
 /*
@@ -35,3 +36,10 @@ Route::get('/vendor', [AdminController::class, 'vendor'])->name('show.vendor');
 Route::post('vendor/add', [AdminController::class, 'add_vendor'])->name('add.vendor');
 Route::post('vendor/edit', [AdminController::class, 'edit_vendor'])->name('edit.vendor');
 Route::get('vendor/delete/{id}', [AdminController::class, 'delete_vendor'])->name('delete.vendor');
+
+
+/*Routes for GRN Notes*/
+
+Route::get('/grn', [GRNReportController::class, 'index'])->name('kpo.grn.show');
+Route::get('/grn_add', [GRNReportController::class, 'CreatGrn'])->name('kpo.create.grn');
+Route::post('grn_add', [GRNReportController::class, 'UpdateGrn'])->name('kpo.insert.grn');
