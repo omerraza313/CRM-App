@@ -16,7 +16,7 @@
     <section class="content">
     	<div class="container-fluid">
         <div class="row d-flex justify-content-center">
-        	<div class="col-md-11">
+        	<div class="col-md-12">
         		<div class="card">
 					<div class="card-header"></div>
 
@@ -28,7 +28,18 @@
 				                <input name="good_title" type="text" class="form-control" id="good_title" placeholder="Good's Title">
 				            </div>
 				            <div class="row">
-				            	<div class="col-md-4">
+				            	<div class="col-md-3">
+				            		<div class="form-group">
+						            	<label>Material UOM</label>
+						            	<select class="form-control" id="uom_id" name="uom_id">
+						            		<option value="">Select UOM</option>
+						            		@foreach($unit as $ey=>$val)
+						            		 <option value="{{$val->id}}">{{$val->name}} <small> ( {{$val->unit_suffix}} )</small></option>
+						            		@endforeach
+						            	</select>
+						            </div>
+				            	</div>
+				            	<div class="col-md-3">
 						            <div class="form-group">
 						            	<label>Material Category</label>
 						            	<select class="form-control" id="material_id" name="material_id">
@@ -39,7 +50,7 @@
 						            	</select>
 						            </div>
 				            	</div>
-				            	<div class="col-md-4">
+				            	<div class="col-md-3">
 				            		<div class="form-group">
 						            	<label>Sub Material Category</label>
 						            	<select class="form-control" id="sub_matetial_id" name="sub_material_id">
@@ -47,14 +58,15 @@
 						            	</select>
 						            </div>
 				            	</div>
-				            	<div class="col-md-4">
+				            	<div class="col-md-3">
 				            		<div class="form-group">
-						            	<label>Vendor Category</label>
+						            	<label>Vendor</label>
 						            	<select class="form-control" id="vendor_id" name="vendor_id">
 						            		
 						            	</select>
 						            </div>
 				            	</div>
+				            	
 				            </div>
 				            <!-- <div class="row">
 				            	<div class="col-md-4">
@@ -90,7 +102,7 @@
 
 				        <div class="card-footer">
 				            <button type="submit" class="btn btn-primary">
-				            	Add Post
+				            	Add
 				            </button>
 				        </div>
 				    </form>

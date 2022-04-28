@@ -47,7 +47,7 @@
                       <th>No#</th>
                       <th>Vendor Name</th>
                       <th>Vendor UserName</th>
-                      <th>Material Category</th>
+                      <th>Sub Material Category</th>
                       <th>Registration Status</th>
                       <th>NTN Status</th>
                       <th>STRN Status</th>
@@ -62,7 +62,7 @@
                       <td>{{++$key}}</td>
                       <td>{{$list->name}}</td>
                       <td>{{$list->username}}</td>
-                      <td>{{$list->Material->name}}</td>
+                      <td>{{$list->SubMaterial->name}}<small> ({{$list->SubMaterial->code}})</small></td>
                       <td>{{$list->reg_status}}</td>
                       <td>{{$list->ntn_status}}</td>
                       <td>{{$list->strn_status}}</td>
@@ -128,9 +128,9 @@
                                   <div class="form-group">
                                     <label for="parent-material-type">Vendor Material Type</label>
                                     <div class="input-group">
-                                      <select class="form-control" name="material_id" required="">
-                                       <option value="{{$list->Material->id}}" selected>{{$list->Material->name}}</option>
-                                        @foreach($material as $key=>$mat)
+                                      <select class="form-control" name="sub_material_id" required="">
+                                       <option value="{{$list->SubMaterial->id}}" selected>{{$list->SubMaterial->name}}</option>
+                                        @foreach($sub_material as $key=>$mat)
                                         <option value="{{$mat->id}}">{{$mat->name}}</option>
                                         @endforeach
                                       </select>
@@ -247,9 +247,9 @@
                       <div class="form-group">
                         <label for="Parent Category">Vendor Material Type</label>
                         <div class="input-group">
-                          <select class="form-control" name="material_id" required="">
+                          <select class="form-control" name="sub_material_id" required="">
                             <option value="">Select Material</option>
-                            @foreach($material as $key=>$mat)
+                            @foreach($sub_material as $key=>$mat)
                             <option value="{{$mat->id}}">{{$mat->name}}</option>
                             @endforeach
                           </select>

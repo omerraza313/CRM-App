@@ -12,4 +12,8 @@ class Vendor extends Model
     public function Material(){
         return $this->belongsTo('App\Models\Material');
     }
+
+    public function SubMaterial(){
+        return $this->belongsTo('App\Models\SubMaterial', 'sub_material_id', 'id');
+    }
 }

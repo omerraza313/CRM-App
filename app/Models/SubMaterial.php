@@ -12,4 +12,10 @@ class SubMaterial extends Model
     public function Material(){
         return $this->belongsTo('App\Models\Material', 'material_id', 'id');
     }
+
+    public function Vendor(){
+
+        return $this->hasMany('App\Models\Vendor');
+    }
+    
 }

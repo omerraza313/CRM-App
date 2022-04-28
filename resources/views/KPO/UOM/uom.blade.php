@@ -1,14 +1,11 @@
-@extends('Admin.layouts.masterDataTables')
+@extends('KPO.layouts.masterDataTables')
 @section('content')
 
 <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Sub Material</h1>
-          </div><!-- /.col -->
-          <div class="col-sm-6">
-           
+            <h1 class="m-0">Material</h1>
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -21,62 +18,47 @@
           <!-- left column -->
           <div class="col-md-12">
 
-            <!------Blog Category List------>
+            <!------Blog Material List------>
             @error('name')
-              <div class="alert alert-danger">
+              <div class="alert alert-danger" role="alert">
                {{$message}}
               </div>
             @enderror
+            
 
-             @error('code')
-              <div class="alert alert-danger">
-               {{$message}}
-              </div>
-            @enderror
-
-             @if(Session::Has('danger'))
+            @if(Session::Has('msg'))
                 <div class="alert alert-danger" role="alert">
-                  {{session::get('danger')}}
+                  {{session::get('msg')}}
                 </div>
-              @endif
-
-              @if(Session::Has('success'))
-                <div class="alert alert-info" role="alert">
-                  {{session::get('success')}}
-                </div>
-              @endif
+                @endif
 
             <div class="card card-dafault">
               <div class="card-header">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-add">
-                  Add Sub Material
+                  Add Unit
                 </button>
-               
+                
               </div>
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                     <tr>
                       <th>No#</th>
-                      <th>Material</th>
-                      <th>Parent Material</th>
-                      <th>Slug</th>
-                      <th>Code</th>
-                      <th class="text-right">Action</th>
+                      <th>Unit Name</th>
+                      <th>Unit Suffix</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tbody> 
-                    @foreach($sub_material as $key=>$list)
+                    @foreach($unit as $key=>$list)
                     <tr>
                       <td>{{++$key}}</td>
                       <td>{{$list->name}}</td>
-                      <td>{{$list->Material->name}}</td>
-                      <td>{{$list->slug}}</td>
-                      <td>{{$list->code}}</td>
-                      <td class="text-right py-0 align-middle">
-                        <div class="btn-group btn-group-sm">
-                          <button class="btn btn-info" data-toggle="modal" data-target="#modal-edit-{{$list->id}}"><i class="fas fa-pen-square"></i></button>
-                          <button class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{$list->id}}"><i class="fas fa-trash"></i></button>
+                      <td>{{$list->unit_suffix}}</td>
+                      <td class="py-0 align-middle">
+                        <div class="btn-group btn-group">
+                          <button class="btn btn-info" data-toggle="modal" data-target="#modal-edit-{{$list->id}}"><i class="fas fa-pen-square"></i><span style="margin-left: 5px;">Edit<span></button>
+                          <button class="btn btn-danger" data-toggle="modal" data-target="#modal-delete-{{$list->id}}"><i class="fas fa-trash"></i><span style="margin-left: 5px;">Delete<span></button>
                         </div>
                       </td>
                     </tr> 
@@ -86,16 +68,16 @@
                       <div class="modal-dialog modal-sm">
                         <div class="modal-content">
                           <div class="modal-header">
-                            <h4 class="modal-title">Sub Material</h4>
+                            <h4 class="modal-title">Delete Unit</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                               <span aria-hidden="true">&times;</span>
                             </button>
                           </div>
                           <div class="card-body">
-                            <p>Do You Want to Delete <strong>{{$list->name}}</strong> Sub Material</p>
+                            <p>Do You Want to Delete <strong>{{$list->name}}</strong> Material</p>
                               <div class="modal-footer justify-content-between">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                <a href="{{url('sub-material/delete/')}}/{{$list->id}}" class="btn btn-danger">Delete</a>
+                                <a href="{{url('unit/delete-unit/')}}/{{$list->id}}" class="btn btn-danger">Delete</a>
                               </div>
                             
                           </div>
@@ -111,38 +93,26 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title">Sub Material</h4>
+                    <h4 class="modal-title">Edit Unit</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="card-body">
-                    <form method="POST" action="{{route('edit.sub_material')}}">
+                    <form method="POST" action="{{route('edit.unit')}}">
                       @csrf
                       <input type="text" name="id" value="{{$list->id}}" hidden="">
                       <div class="form-group">
-                        <label for="sub-material-name">Sub Material Name</label>
-                        <input type="text" class="form-control" name="name" id="sub-material-name" placeholder="Sub Material Name" value="{{$list->name}}" required="">
-                      </div>
-                    
-                      <div class="form-group">
-                        <label for="parent-material">Parent Material</label>
-                        <div class="input-group">
-                          <select class="form-control" name="material_id" required="">
-                           <option value="{{$list->Material->id}}" selected>{{$list->Material->name}}</option>
-                            @foreach($material as $key=>$mat)
-                            <option value="{{$mat->id}}">{{$mat->name}}</option>
-                            @endforeach
-                          </select>
-                        </div>
+                        <label for="Unit-name">Unit Name</label>
+                        <input type="text" class="form-control" name="name" id="edit-unit-name" placeholder="Unit Name" value="{{$list->name}}">
                       </div>
                       <div class="form-group">
-                        <label for="sub-material-code">Material Code</label>
-                        <input type="text" class="form-control" name="code" id="sub-material-code" placeholder="Sub Material Code" value="{{$list->code}}" required="">
+                        <label for="Unit-Suffix">Unit Suffix</label>
+                        <input type="text" class="form-control" name="unit_suffix" id="edit-unit-suffix" placeholder="Unit Suffix" value="{{$list->unit_suffix}}">
                       </div>
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
                       </div>
                     </form>
                   </div>
@@ -153,7 +123,7 @@
               </div>  
             </div>
             <!-- Edit Category End -->
-                    @endforeach        
+                   @endforeach
                   </tbody>
                 </table>
               </div>
@@ -168,39 +138,27 @@
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h4 class="modal-title">Add Sub Material</h4>
+                    <h4 class="modal-title">Add Unit</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
                   <div class="card-body">
-                    <form method="POST" action="{{route('add.sub_material')}}">
+                    <form method="POST" action="{{route('create.unit')}}">
                       @csrf
                       <div class="form-group">
-                        <label for="sub-material-name">Sub Material Name</label>
-                        <input type="text" class="form-control" name="name" id="sub-material-name" placeholder="Sub Material Name" required="">
-                          
+                        <label for="unit-name">Unit Name</label>
+                        <input type="text" class="form-control" name="name" id="unit-name" placeholder="Unit Name" required="">
                       </div>
                       
-                     
                       <div class="form-group">
-                        <label for="Parent Category">Parent Material</label>
-                        <div class="input-group">
-                          <select class="form-control" name="material_id" required="">
-                            <option value="">Select Material</option>
-                            @foreach($material as $key=>$mat)
-                            <option value="{{$mat->id}}">{{$mat->name}}</option>
-                            @endforeach
-                          </select>
-                        </div>
+                        <label for="unit-suffix">Unit Suffix</label>
+                        <input type="text" class="form-control" name="unit_suffix" id="unit-suffix" placeholder="Unit Suffix" required="">
                       </div>
-                      <div class="form-group">
-                        <label for="sub-material-code">Material Code</label>
-                        <input type="text" class="form-control" name="code" id="sub-material-code" placeholder="Sub Material Code" required="">
-                      </div>
+                      
                       <div class="modal-footer justify-content-between">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Add</button>
+                        <button type="submit" class="btn btn-primary">Add New</button>
                       </div>
                   </form>
                   </div>
@@ -218,4 +176,4 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-@endsection
+@endsection 

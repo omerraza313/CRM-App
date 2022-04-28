@@ -239,7 +239,7 @@
 
 
 </script>
-
+<!-- 
 <script type="text/javascript">
 
 
@@ -273,6 +273,6 @@
     });
   });
 
-</script>
+</script> -->
 </body>
 </html>

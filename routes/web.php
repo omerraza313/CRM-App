@@ -23,14 +23,21 @@ Route::post('/material/create-material', [AdminController::class, 'create_materi
 Route::post('/material/edit-material', [AdminController::class, 'edit_material'])->name('edit.material');
 Route::get('/material/delete-material/{id}', [AdminController::class, 'delete_material'])->name('delete.material');
 
-/*Routes for Material*/
+/*Routes for Sub Material*/
 
 Route::get('/sub_material', [AdminController::class, 'sub_material'])->name('show.sub_material');
 Route::post('sub_material/add', [AdminController::class, 'add_sub_material'])->name('add.sub_material');
 Route::post('sub_material/edit', [AdminController::class, 'edit_sub_material'])->name('edit.sub_material');
 Route::get('sub-material/delete/{id}', [AdminController::class, 'delete_sub_material'])->name('delete.sub_material');
 
-/*Routes for Material*/
+/*Routes for Unit*/
+
+Route::get('unit', [AdminController::class, 'show_unit'])->name('show.unit');
+Route::post('/unit/create-unit', [AdminController::class, 'create_unit'])->name('create.unit');
+Route::post('/unit/edit-unit', [AdminController::class, 'edit_unit'])->name('edit.unit');
+Route::get('/unit/delete-unit/{id}', [AdminController::class, 'delete_unit'])->name('delete.unit');
+
+/*Routes for Vendor	*/
 
 Route::get('/vendor', [AdminController::class, 'vendor'])->name('show.vendor');
 Route::post('vendor/add', [AdminController::class, 'add_vendor'])->name('add.vendor');
