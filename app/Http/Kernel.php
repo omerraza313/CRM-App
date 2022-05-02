@@ -29,6 +29,19 @@ class Kernel extends HttpKernel
      * @var array<string, array<int, class-string|string>>
      */
     protected $middlewareGroups = [
+
+        'admin' => [
+
+             \App\Http\Middleware\AdminCheck::class,
+
+        ],
+
+        'kpo' => [
+
+             \App\Http\Middleware\KpoCheck::class,
+
+        ],   
+
         'web' => [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,

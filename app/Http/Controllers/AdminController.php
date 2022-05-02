@@ -11,6 +11,15 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function __construct(){
+
+        $this->middleware('auth');
+    }
+
+    public function dashboard(){
+        return view('Admin.dashboard.dashboard');
+    }
+
     public function show_material(){
         $material = Material::all();
         return view('Admin.material.material', compact('material'));

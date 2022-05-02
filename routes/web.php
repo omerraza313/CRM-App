@@ -15,6 +15,21 @@ use App\Http\Controllers\GRNReportController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function(){
+	return redirect('home');
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+/********Admin Routes Start*********/
+
+Route::group(['middleware'=> ['admin']], function(){
+
+/*Route for admin dashboard*/
+Route::get('/admin', [AdminController::class, 'dashboard'])->name('admin.dash');
 
 /*Routes for Material*/
 
@@ -45,8 +60,15 @@ Route::post('vendor/edit', [AdminController::class, 'edit_vendor'])->name('edit.
 Route::get('vendor/delete/{id}', [AdminController::class, 'delete_vendor'])->name('delete.vendor');
 
 
+});
+/********Admin Routes End*********/
+
+Route::group(['middleware'=> ['kpo']], function(){
 /*Routes for GRN Notes*/
 
 Route::get('/grn', [GRNReportController::class, 'index'])->name('kpo.grn.show');
 Route::get('/grn_add', [GRNReportController::class, 'CreatGrn'])->name('kpo.create.grn');
 Route::post('grn_add', [GRNReportController::class, 'UpdateGrn'])->name('kpo.insert.grn');
+
+});
+
