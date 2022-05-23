@@ -1,4 +1,4 @@
-@extends('KPO.layouts.masterDataTables')
+@extends('Admin.layouts.masterDataTables')
 @section('content')
 
 <div class="content-header">

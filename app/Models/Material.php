@@ -14,4 +14,11 @@ class Material extends Model
         return $this->hasMany('App\Models\SubMaterial');
     }
 
+    public function grnReports(){
+
+        return $this->hasMany('App\Models\GRNReport');
+    }
+
+    
+
 }

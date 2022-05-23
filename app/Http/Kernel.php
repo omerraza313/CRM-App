@@ -40,6 +40,11 @@ class Kernel extends HttpKernel
 
              \App\Http\Middleware\KpoCheck::class,
 
+        ], 
+        'accountant' => [
+
+             \App\Http\Middleware\AccountantCheck::class,
+
         ],   
 
         'web' => [
@@ -76,5 +81,6 @@ class Kernel extends HttpKernel
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'CheckUser' => \App\Http\Middleware\CheckUser::class,
     ];
 }

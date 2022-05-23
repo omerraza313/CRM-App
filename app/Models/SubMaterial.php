@@ -17,5 +17,9 @@ class SubMaterial extends Model
 
         return $this->hasMany('App\Models\Vendor');
     }
+    public function grnReports(){
+
+        return $this->hasMany('App\Models\GRNReport');
+    }
     
 }

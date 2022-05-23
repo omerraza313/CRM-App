@@ -1,4 +1,4 @@
-@extends('Admin.layouts.masterDataTables')
+@extends('Accountant.layouts.masterDataTables')
 @section('content')
 
 <div class="content-header">
@@ -52,7 +52,7 @@
                     <th>Sub-Material</th>
                     <th>Vendor</th>
                     <th>Quantity</th>
-                    <th>Per Unit Value</th>
+                    <th>Per Unit Quantity</th>
                     <th>Date</th>
                     <th>GRN Note</th>
                     <th>Read Status</th>
@@ -76,8 +76,8 @@
                       <td>{{$list->grn_note}}</td>
                       <td>{{$list->read_status}}</td>
                       <td>
-                        <a href="{{ url('/grn/delete')}}/{{$list->id}}" class="btn btn-danger"><i class="fas fa-trash"></i></a>
-                        <a href="" class="btn btn-warning"><i class="fas fa-pen"></i></a>
+                        <a href="{{ url('single-invoice')}}/{{$list->id}}" class="btn btn-danger"><i class="fas fa-eye"></i></a>
+                        
                       </td>
                       
 
@@ -93,7 +93,7 @@
                     <th>Sub-Material</th>
                     <th>Vendor</th>
                     <th>Quantity</th>
-                    <th>Vol/Weight</th>
+                    <th>Per Unit Quantity</th>
                     <th>Date</th>
                     <th>GRN Note</th>
                     <th>Read Status</th>

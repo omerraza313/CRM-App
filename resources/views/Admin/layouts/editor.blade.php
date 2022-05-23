@@ -34,11 +34,29 @@
         <li class="nav-item d-none d-sm-inline-block">
           <a href="" class="nav-link">Home</a>
         </li>
+
        
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
+        </li>
+
+        <li>
+          <a class="nav-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
+        </li>
         <!-- Navbar Search -->
         <li class="nav-item">
           <a class="nav-link" data-widget="navbar-search" href="#" role="button">
@@ -56,6 +74,7 @@
             <i class="fas fa-th-large"></i>
           </a>
         </li>
+
       </ul>
     </nav>
   <!-- /.navbar -->

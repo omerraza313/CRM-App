@@ -20,99 +20,106 @@
         		<div class="card">
 					<div class="card-header"></div>
 
-				    <form method="POST" action="{{route('kpo.insert.grn')}}" enctype="multipart/form-data">
+				    <form method="POST" action="{{route('store.invoice')}}">
 				    	@csrf
+
+				    	<input type="id" name="grn_id" value="{{$grnId->id}}" hidden>
 				        <div class="card-body">
 				            <div class="form-group">
 				                <label for="title">Good's Title</label>
-				                <input name="title" type="text" class="form-control" id="good_title" placeholder="Good's Title">
+				                <input type="text" class="form-control" id="good_title" placeholder="Good's Title" value="{{$grnId->title}}" disabled>
 				            </div>
 				            <div class="row">
 				            	<div class="col-md-3">
 				            		<div class="form-group">
 						            	<label>Material UOM</label>
-						            	<select class="form-control" id="uom_id" name="uom_id">
-						            		<option value="">Select UOM</option>
-						            		@foreach($unit as $key=>$val)
-						            		 <option value="{{$val->id}}">{{$val->name}} <small> ( {{$val->unit_suffix}} )</small></option>
-						            		@endforeach
+						            	<select class="form-control" id="uom_id" disabled>
+						            		<option>{{$grnId->unit->name}}</option>
+						            	
 						            	</select>
 						            </div>
 				            	</div>
 				            	<div class="col-md-3">
 						            <div class="form-group">
 						            	<label>Material Category</label>
-						            	<select class="form-control" id="material_id" name="material_id">
-						            		<option value="">Select Material</option>
-						            		@foreach($material as $key=>$list)
-						            		<option value="{{$list->id}}">{{$list->name}}</option>
-						            		@endforeach
+						            	<select class="form-control" id="material_id" disabled>
+						            		<option>{{$grnId->Material->name}}</option>
+						            		
 						            	</select>
 						            </div>
 				            	</div>
 				            	<div class="col-md-3">
 				            		<div class="form-group">
 						            	<label>Sub Material Category</label>
-						            	<select class="form-control" id="sub_matetial_id" name="sub_material_id">
-						            		<option value="">Select Sub Material</option>
+						            	<select class="form-control" id="sub_matetial_id" disabled>
+						            		<option>{{$grnId->SubMaterial->name}}</option>
 						            	</select>
 						            </div>
 				            	</div>
 				            	<div class="col-md-3">
 				            		<div class="form-group">
 						            	<label>Vendor</label>
-						            	<select class="form-control" id="vendor_id" name="vendor_id">
-						            		<option value="">Select Vendor</option>
+						            	<select class="form-control" id="vendor_id" disabled>
+						            		<option>{{$grnId->Vendor->name}}</option>
 						            	</select>
 						            </div>
 				            	</div>
 				            	
 				            </div>
-				            <!-- <div class="row">
-				            	<div class="col-md-4">
-				            		<div class="form-group">
-						                <label for="Good Price">Price</label>
-						                <input name="good_price" type="text" class="form-control" id="good_price" placeholder="Enter Price">
-						            </div>
-				            	</div>
-				            	<div class="col-md-4">
-				            		<div class="form-group">
-						                <label for="Good Sales Tax">Sales Tax Percentage</label>
-						                <input name="good_sales_tax" type="text" class="form-control" id="good_sales_tax" placeholder="Enter Sales Tax Percantage (w/o % sign)">
-						            </div>
-				            	</div>
-				            	<div class="col-md-4">
-				            		<div class="form-group">
-						                <label for="Good Income Tax">Income Tax Percentage</label>
-						                <input name="good_income_tax" type="text" class="form-control" id="good_income_tax" placeholder="Enter IncomeTax Percantage (w/o % sign)">
-						            </div>
-				            	</div>
-				            </div> -->
 
 				            <div class="row">
 				            	<div class="col-md-2">
 				            		<div class="form-group">
 						                <label for="qty">Total Quantity</label>
-						                <input name="qty" type="number" class="form-control" id="qty" placeholder="Good qty">
+						                <input type="number" class="form-control" id="qty" placeholder="Good qty" value="{{$grnId->qty}}" disabled>
 						            </div>
 				            	</div>
 				            	<div class="col-md-2">
 				            		<div class="form-group">
 						                <label for="vol_per_unit">Volume Per Unit</label>
-						                <input name="vol_per_unit" type="number" class="form-control" id="vol_per_unit" placeholder="Good qty">
+						                <input type="number" class="form-control" id="vol_per_unit" placeholder="Good qty" value="{{$grnId->vol_per_unit}}" disabled>
 						            </div>
 				            	</div>
 				            	<div class="col-md-4">
 				            		<div class="form-group">
 				            			<label for="grn_date">Date</label>
-				            			<input type="datetime-local" name="grn_date" class="form-control" id="grn_date" placeholder="select date" required>
+				            			<input class="form-control" id="grn_date" placeholder="select date" value="{{$grnId->grn_date}}" disabled>
 				            		</div>
 				            	</div>
 				            	<div class="col-md-4">
 				            		<div class="form-group">
 						                <label for="grn_note">GRN Note</label>   
-						                <textarea name="grn_note" class="form-control">
+						                <textarea class="form-control" disabled>
+						                	{{$grnId->grn_note}}
 						                </textarea>     
+						            </div>
+				            	</div>
+				            </div>
+				            <div class="row">
+				            	<div class="col-md-3">
+				            		<div class="form-group">
+						                <label for="Good Price">Unit Price</label>
+						                <input name="unit_price" type="number" class="form-control" id="good_price" placeholder="Enter Unit Price" required>
+						            </div>
+						            
+				            	</div>
+
+				            	<div class="col-md-3">
+				            		<div class="form-group">
+						                <label for="Good Price">Price</label>
+						                <input name="good_price" type="number" class="form-control" id="good_price" placeholder="Enter Price" required>
+						            </div>
+				            	</div>
+				            	<div class="col-md-3">
+				            		<div class="form-group">
+						                <label for="Good Sales Tax">Sales Tax Percentage</label>
+						                <input name="good_sales_tax" type="number" class="form-control" id="good_sales_tax" placeholder="Enter Sales Tax Percantage (w/o % sign)" required>
+						            </div>
+				            	</div>
+				            	<div class="col-md-3">
+				            		<div class="form-group">
+						                <label for="Good Income Tax">Income Tax Percentage</label>
+						                <input name="good_income_tax" type="number" class="form-control" id="good_income_tax" placeholder="Enter IncomeTax Percantage (w/o % sign)" required>
 						            </div>
 				            	</div>
 				            </div>
@@ -121,7 +128,7 @@
 
 				        <div class="card-footer">
 				            <button type="submit" class="btn btn-primary">
-				            	Add GRN
+				            	Generate Invoice
 				            </button>
 				        </div>
 				    </form>

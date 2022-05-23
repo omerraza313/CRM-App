@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Auth;
 
-class CheckUser
+class AccountantCheck
 {
     /**
      * Handle an incoming request.
@@ -17,27 +17,9 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = Auth::user()->role;
-
-        if ($user == 'admin') {
-
-            return redirect('/admin');
-         
-        }   
-
-        elseif($user == 'kpo'){
-
-              return redirect('/grn');
-
+        if (Auth::check() && Auth::user()->role == 'accountant') {
+            return $next($request);
         }
-
-        elseif($user == 'accountant'){
-            // echo "This is account Middleware";
-              return redirect('/accountant');
-
-        }
-
-           return $next($request);   
+        abort(403);
     }
-       
 }

@@ -6,6 +6,7 @@ use App\Models\Vendor;
 use App\Models\Material;
 use App\Models\SubMaterial;
 use App\Models\Unit;
+use Auth;
 
 use Illuminate\Http\Request;
 
@@ -150,6 +151,8 @@ class AdminController extends Controller
         // }
         $model->delete();
         
+      
+
         return redirect('/unit')->with('msg', 'Unit Deleted');
     }
 

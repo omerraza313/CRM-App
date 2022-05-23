@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\GRNReportController;
+use App\Http\Controllers\AccountController;
 
 
 /*
@@ -21,7 +22,7 @@ Route::get('/', function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home')->middleware('CheckUser');
 
 
 /********Admin Routes Start*********/
@@ -45,12 +46,7 @@ Route::post('sub_material/add', [AdminController::class, 'add_sub_material'])->n
 Route::post('sub_material/edit', [AdminController::class, 'edit_sub_material'])->name('edit.sub_material');
 Route::get('sub-material/delete/{id}', [AdminController::class, 'delete_sub_material'])->name('delete.sub_material');
 
-/*Routes for Unit*/
 
-Route::get('unit', [AdminController::class, 'show_unit'])->name('show.unit');
-Route::post('/unit/create-unit', [AdminController::class, 'create_unit'])->name('create.unit');
-Route::post('/unit/edit-unit', [AdminController::class, 'edit_unit'])->name('edit.unit');
-Route::get('/unit/delete-unit/{id}', [AdminController::class, 'delete_unit'])->name('delete.unit');
 
 /*Routes for Vendor	*/
 
@@ -63,12 +59,41 @@ Route::get('vendor/delete/{id}', [AdminController::class, 'delete_vendor'])->nam
 });
 /********Admin Routes End*********/
 
+/*KPO ROUTES STARTS HERE*/
+
 Route::group(['middleware'=> ['kpo']], function(){
 /*Routes for GRN Notes*/
 
 Route::get('/grn', [GRNReportController::class, 'index'])->name('kpo.grn.show');
-Route::get('/grn_add', [GRNReportController::class, 'CreatGrn'])->name('kpo.create.grn');
-Route::post('grn_add', [GRNReportController::class, 'UpdateGrn'])->name('kpo.insert.grn');
+Route::get('/grn_add', [GRNReportController::class, 'AddGrn'])->name('kpo.create.grn');
+Route::post('/grn_add', [GRNReportController::class, 'CreateGrn'])->name('kpo.insert.grn');
+Route::post('/getSubMaterial', [GRNReportController::class,	 'getSubMaterial'])->name('kpo.getSubMaterial.get');
+Route::post('/getVendor', [GRNReportController::class,	 'getVendor'])->name('kpo.getVendor.get');
+ Route::get('grn/delete/{id}', [GRNReportController::class, 'deleteGRN'])->name('kpo.del.grn');
+/*Routes for Unit*/
+
+Route::get('unit', [AdminController::class, 'show_unit'])->name('show.unit');
+Route::post('/unit/create-unit', [AdminController::class, 'create_unit'])->name('create.unit');
+Route::post('/unit/edit-unit', [AdminController::class, 'edit_unit'])->name('edit.unit');
+Route::get('/unit/delete-unit/{id}', [AdminController::class, 'delete_unit'])->name('delete.unit');
+});
+
+
+
+
+/*Accountant ROUTES STARTS HERE*/
+
+Route::group(['middleware'=> ['accountant']], function(){
+/*Routes for GRN Notes*/
+
+Route::get('/accountant', [AccountController::class, 'index'])->name('acc.dash');
+Route::get('purchase-invoices', [AccountController::class, 'purchaseInvoice'])->name('purchase.invoice');
+Route::get('/old-purchase-invoices', [AccountController::class, 'oldInvoices'])->name('old.invoices');
+Route::get('single-invoice/{grnId}',[AccountController::class, 'singleInvoice']);
+Route::post('purchase-invoice', [AccountController::class, 'storeInvoice'])->name('store.invoice');
 
 });
+
+
+
 

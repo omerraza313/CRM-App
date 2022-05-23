@@ -34,22 +34,32 @@
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-       
+       <li class="nav-item">
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
+        </li>
+
+        <li>
+          <a class="nav-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+            {{ __('Logout') }}
+          </a>
+        </li>
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
-          
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header"> Notifications</span>
-            
-           
-            <a href="" class="dropdown-item dropdown-footer"></a>
-          </div>
         </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
           </a>
         </li>
+
         <li class="nav-item">
           <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
             <i class="fas fa-th-large"></i>
