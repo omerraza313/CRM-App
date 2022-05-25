@@ -89,6 +89,8 @@ Route::group(['middleware'=> ['accountant']], function(){
 Route::get('/accountant', [AccountController::class, 'index'])->name('acc.dash');
 Route::get('purchase-invoices', [AccountController::class, 'purchaseInvoice'])->name('purchase.invoice');
 Route::get('/old-purchase-invoices', [AccountController::class, 'oldInvoices'])->name('old.invoices');
+Route::post('update-old-Invoice', [AccountController::class, 'updateOldInvoice'])->name('update.old.invoice');
+Route::get('/old-invoices-edit/{id}', [AccountController::class, 'editOldInvoices'])->name('old.invoices.edit');
 Route::get('single-invoice/{grnId}',[AccountController::class, 'singleInvoice']);
 Route::post('purchase-invoice', [AccountController::class, 'storeInvoice'])->name('store.invoice');
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sharina World | Dashboard</title>
+  <title>CRM App</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -52,15 +52,6 @@
           </a>
         </li>
         <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-          
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header"> Notifications</span>
-            
-           
-            <a href="" class="dropdown-item dropdown-footer"></a>
-          </div>
-        </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
             <i class="fas fa-expand-arrows-alt"></i>
@@ -91,7 +82,7 @@
           <img src="{{asset('backend_assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">KPO</a>
         </div>
       </div>
 
@@ -101,85 +92,53 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item menu-open">
-            <a href="" class="nav-link active">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Dashboard
-              </p>
-            </a>
-          </li>
           
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Vendors
+                GRN
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{route('kpo.grn.show')}}" class="nav-link">
                   <i class="fas fa-user nav-icon"></i>
                   <p>See All</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{route('kpo.create.grn')}}" class="nav-link">
                   <i class="fas fa-user-plus nav-icon"></i>
-                  <p>Add Users</p>
+                  <p>Add GRN</p>
                 </a>
               </li>
+              <!-- <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="fas fa-user-plus nav-icon"></i>
+                  <p>Edit GRN</p>
+                </a>
+              </li> -->
             </ul>
           </li>
            <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Material
+                Units
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{route('show.unit')}}" class="nav-link">
                   <i class="far fa-copy nav-icon"></i>
                   <p>See All</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="fas fa-plus-square nav-icon"></i>
-                  <p>Add Material</p>
-                </a>
-              </li>
             </ul>
           </li>
-        
-          <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Sub Material
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="fas fa-stream nav-icon"></i>
-                      <p>See All</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="business.html" class="nav-link">
-                      <i class="fas fa-plus-square nav-icon"></i>
-                      <p>Add Sub Material</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

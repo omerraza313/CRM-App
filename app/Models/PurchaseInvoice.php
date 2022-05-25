@@ -13,7 +13,7 @@ class PurchaseInvoice extends Model
 
     public function grnReport(){
 
-        return $this->belongsTo('App\Models\GRNReport', 'id', 'grn_id');
+        return $this->belongsTo('App\Models\GRNReport', 'grn_id', 'id');
     }
 
 

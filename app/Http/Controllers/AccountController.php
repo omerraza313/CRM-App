@@ -30,13 +30,67 @@ class AccountController extends Controller
        return view('Accountant.PI.purchaseInvoice', compact('reports'));
     }
     public function oldInvoices(){
-
         $reports = GRNReport::where('read_status', 1)->get();
     
-       return view('Accountant.PI.purchaseInvoice', compact('reports'));
+       return view('Accountant.PI.oldPurchaseInvoices', compact('reports'));
+    }
+
+    public function editOldInvoices($id){
+       $old_invoice = PurchaseInvoice::where('grn_id',$id)->first();
+       $old_report = GRNReport::where('id', $id)->first();
+       return view('Accountant.PI.editSingleInvoice', compact('old_invoice', 'old_report'));
+       
+    }
+
+    public function updateOldInvoice(Request $request){
+        $unit_price = (float)$request->unit_price;
+        $good_price = (float)$request->good_price;
+        $exclusive_price = $good_price;
+
+        //Sales Tax Handling
+        $good_sales_tax = (float)$request->good_sales_tax;
+        $good_sales_tax = $good_sales_tax/100;
+
+        //Income Tax Handling
+        $good_income_tax = (float)$request->good_income_tax;
+        $good_income_tax = $good_income_tax/100;
+
+        //calculating the iunclusive price
+
+        $sale_tax = $good_price*$good_sales_tax;
+        $good_price = $good_price+$sale_tax;
+
+        if($good_income_tax>0){
+            $income_tax = $good_price*$good_income_tax;
+            $good_price = $good_price - $income_tax;
+        }
+        else{
+            $good_price = $good_price - 0;
+        }
+
+
+        $invoice = PurchaseInvoice::find($request->id);
+        $invoice->grn_id = $request->grn_id;
+        $invoice->unit_price = $unit_price;
+        $invoice->good_price = $exclusive_price;
+        $invoice->good_sales_tax = $good_sales_tax*100;
+        $invoice->good_income_tax = $good_income_tax*100;
+        $invoice->inclusive_price = $good_price;
+        $invoice->update();
+       //echo gettype($unit_price);
+          
+        // PurchaseInvoice::create($request->all());
+
+        GRNReport::where('id', $request->grn_id)
+                    ->update([
+
+                        'read_status' => 1
+
+                    ]);
+
+        return redirect('/old-purchase-invoices');
     }
     
-
     public function singleInvoice(GRNReport $grnId){
 
         return view('Accountant.PI.singleInvoice', compact('grnId'));
@@ -48,6 +102,7 @@ class AccountController extends Controller
        
         $unit_price = (float)$request->unit_price;
         $good_price = (float)$request->good_price;
+        $exclusive_price = $good_price;
 
         //Sales Tax Handling
         $good_sales_tax = (float)$request->good_sales_tax;
@@ -74,7 +129,7 @@ class AccountController extends Controller
         $invoice = new PurchaseInvoice;
         $invoice->grn_id = $request->grn_id;
         $invoice->unit_price = $unit_price;
-        $invoice->good_price = $good_price;
+        $invoice->good_price = $exclusive_price;
         $invoice->good_sales_tax = $good_sales_tax*100;
         $invoice->good_income_tax = $good_income_tax*100;
         $invoice->inclusive_price = $good_price;

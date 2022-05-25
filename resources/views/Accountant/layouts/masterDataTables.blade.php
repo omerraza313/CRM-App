@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Sharina World | Dashboard</title>
+  <title>CRM App</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -54,12 +54,7 @@
         <!-- Notifications Dropdown Menu -->
         <li class="nav-item dropdown">
           
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-item dropdown-header"> Notifications</span>
-            
-           
-            <a href="" class="dropdown-item dropdown-footer"></a>
-          </div>
+         
         </li>
         <li class="nav-item">
           <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -91,7 +86,7 @@
           <img src="{{asset('backend_assets/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Admin</a>
+          <a href="#" class="d-block">Accountant</a>
         </div>
       </div>
 
@@ -102,7 +97,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="" class="nav-link active">
+            <a href="{{route('acc.dash')}}" class="nav-link active">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -114,21 +109,21 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-user"></i>
               <p>
-                Vendors
+                Invoice
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="" class="nav-link">
-                  <i class="fas fa-user nav-icon"></i>
-                  <p>See All</p>
+                <a href="{{route('purchase.invoice')}}" class="nav-link">
+                  <i class="fas fa-pen nav-icon"></i>
+                  <p>New GRNs</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
-                  <i class="fas fa-user-plus nav-icon"></i>
-                  <p>Add Users</p>
+                <a href="{{route('old.invoices')}}" class="nav-link">
+                  <i class="fas fa-expand-arrows-alt nav-icon"></i>
+                  <p>Old Invoices</p>
                 </a>
               </li>
             </ul>
@@ -137,7 +132,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-th"></i>
               <p>
-                Material
+                Stock
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -145,41 +140,19 @@
               <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="far fa-copy nav-icon"></i>
-                  <p>See All</p>
+                  <p>Total Stock</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="" class="nav-link">
                   <i class="fas fa-plus-square nav-icon"></i>
-                  <p>Add Material</p>
+                  <p>Stock Entries</p>
                 </a>
               </li>
             </ul>
           </li>
         
-          <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-chart-pie"></i>
-                <p>
-                  Sub Material
-                  <i class="fas fa-angle-left right"></i>
-                </p>
-              </a>
-              <ul class="nav nav-treeview">
-                  <li class="nav-item">
-                    <a href="" class="nav-link">
-                      <i class="fas fa-stream nav-icon"></i>
-                      <p>See All</p>
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="business.html" class="nav-link">
-                      <i class="fas fa-plus-square nav-icon"></i>
-                      <p>Add Sub Material</p>
-                    </a>
-                  </li>
-                </ul>
-              </li>
+         
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

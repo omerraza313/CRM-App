@@ -37,7 +37,7 @@
             <div class="card">
               <div class="card-header">
                 <h3 class="card-title">
-                  <a href="{{route('kpo.create.grn')}}" class="btn btn-primary">Add GRN</a>
+                  <a href="{{route('old.invoices')}}" class="btn btn-primary">Old Invoice</a>
                 </h3>
               </div>
               <!-- /.card-header -->
@@ -55,7 +55,7 @@
                     <th>Per Unit Quantity</th>
                     <th>Date</th>
                     <th>GRN Note</th>
-                    <th>Read Status</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </thead>
@@ -74,13 +74,16 @@
                       <td>{{$list->vol_per_unit}}</td>
                       <td>{{$list->grn_date}}</td>
                       <td>{{$list->grn_note}}</td>
-                      <td>{{$list->read_status}}</td>
-                      <td>
-                        <a href="{{ url('single-invoice')}}/{{$list->id}}" class="btn btn-danger"><i class="fas fa-eye"></i></a>
-                        
-                      </td>
                       
-
+                        @if($list->edit_status>0)
+                        <td><span class="btn btn-danger"><i class="fa-solid fa-x"></i></span></td>
+                        @esle
+                        <td><span class="btn btn-success"><i class="fa fa-check"></i></span></td>
+                        @endif
+                      
+                      <td>
+                        <a href="{{ url('single-invoice')}}/{{$list->id}}" class="btn btn-dark"><i class="fas fa-eye"></i></a>
+                      </td>
                   </tr>
                   @endforeach
                   </tbody>
@@ -96,7 +99,7 @@
                     <th>Per Unit Quantity</th>
                     <th>Date</th>
                     <th>GRN Note</th>
-                    <th>Read Status</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                   </tfoot>
